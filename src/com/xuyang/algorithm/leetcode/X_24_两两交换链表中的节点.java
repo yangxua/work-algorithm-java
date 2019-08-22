@@ -15,7 +15,7 @@ import com.xuyang.algorithm.common.ListNode;
  * 给定 1->2->3->4, 你应该返回 2->1->4->3.
  *
  */
-public class Test24 {
+public class X_24_两两交换链表中的节点 {
 
     /**
      * 递归方法
@@ -48,12 +48,26 @@ public class Test24 {
         while (cur != null && cur.next != null) {
             ListNode next = cur.next;
             cur.next = next.next;
-            next.next = head;
+            next.next = cur;
             pre.next = next;
-            pre = cur.next;//注意这里一次是三个节点间的转换，所以一次要跳跃2个节点
-            cur = pre.next;
+            pre = cur;
+            cur = cur.next;
         }
 
         return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+        node1.next=node2;
+        node2.next=node3;
+        node3.next=node4;
+        node4.next=null;
+        X_24_两两交换链表中的节点 s = new X_24_两两交换链表中的节点();
+        ListNode listNode = s.swapPairs1(node1);
+        System.out.println(listNode);
     }
 }
