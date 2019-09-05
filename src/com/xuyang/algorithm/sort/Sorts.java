@@ -86,7 +86,7 @@ public class Sorts {
         quickSort(arr, 0, arr.length-1);
     }
 
-    private static void quickSort(int[] arr, int left, int right) {
+    public static void quickSort(int[] arr, int left, int right) {
         if (left >= right) {
             return ;
         }
