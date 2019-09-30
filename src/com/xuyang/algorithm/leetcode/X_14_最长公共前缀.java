@@ -33,4 +33,11 @@ public class X_14_最长公共前缀 {
 
         return pre;
     }
+
+    public static void main(String[] args) {
+        X_14_最长公共前缀 s = new X_14_最长公共前缀();
+        String[] str = {"flower","flow","flight"};
+
+        System.out.println(s.longestCommonPrefix(str));
+    }
 }

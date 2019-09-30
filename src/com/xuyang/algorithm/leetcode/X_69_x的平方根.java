@@ -36,7 +36,7 @@ public class X_69_x的平方根 {
         long left = 0;
         long right = x;
         while (left < right) {
-            long mid = (left+right+1)>>>1;
+            long mid = (left + right + 1)>>>1;
             if (mid * mid > x) {
                 right = mid - 1;
             } else {

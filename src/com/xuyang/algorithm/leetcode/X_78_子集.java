@@ -1,7 +1,6 @@
 package com.xuyang.algorithm.leetcode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,8 +32,7 @@ public class X_78_子集 {
         if (nums.length == 0) {
             return new ArrayList<>();
         }
-
-        Arrays.sort(nums);
+        //Arrays.sort(nums); 根据题意，有时需要排序，有时不需要
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         process(nums, 0, list, res);

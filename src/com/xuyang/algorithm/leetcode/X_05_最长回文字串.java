@@ -19,6 +19,24 @@ package com.xuyang.algorithm.leetcode;
 public class X_05_最长回文字串 {
 
     public String longestPalindrome(String s) {
-        return "";
+        if (s.length() < 2) {
+            return s;
+        }
+
+        boolean[][] flag = new boolean[s.length()][s.length()];
+        String res = s.substring(0,1);
+
+        for (int r = 1;r < s.length();r++) {
+            for (int l = 0;l < r;l++) {
+                if (s.charAt(l) == s.charAt(r) && (r - l <= 2 || flag[l+1][r-1])) {
+                    flag[l][r] = true;
+                    if (r - l + 1 > res.length()) {
+                        res = s.substring(l,r+1);
+                    }
+                }
+            }
+        }
+
+        return res;
     }
 }
