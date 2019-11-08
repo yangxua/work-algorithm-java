@@ -29,8 +29,9 @@ public class X_240_搜索二维矩阵Ⅱ {
 
     /**
      * 1.每个点都查询，暴力法
-     *
-     * 2.因为是有序的因此可以从左下角开始，大于target则i--，小于则j++
+     * 2.因为有序,所以可以二分法
+     * 3.因为是有序的因此可以从左下角开始，大于target则i--，小于则j++
+     * 方法3时间复杂度最小O(m+n)
      */
     public boolean searchMatrix(int[][] matrix, int target) {
         if (matrix.length == 0 || matrix[0].length == 0) {

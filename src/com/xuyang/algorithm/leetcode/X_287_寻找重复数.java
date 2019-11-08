@@ -69,4 +69,40 @@ public class X_287_寻找重复数 {
 
         return nums[left];
     }
+
+    /**
+     * 不排序二分法
+     */
+    public int findDuplicate2(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+
+        int left = 0;
+        int right = nums.length-1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            int cnt = lgMidCnt(nums, mid);
+            if (cnt <= mid) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+
+        return left;
+    }
+    //left = 0,right = 7 mid = 3
+    //1,2,3,4,5,6,6,7
+    private int lgMidCnt(int[] nums, int mid) {
+        int cnt = 0;
+
+        for (int i = 0;i < nums.length;i++) {
+            if (nums[i] <= mid) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
 }

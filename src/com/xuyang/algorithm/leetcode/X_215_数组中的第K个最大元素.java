@@ -19,6 +19,10 @@ import java.util.PriorityQueue;
  */
 public class X_215_数组中的第K个最大元素 {
 
+    /**
+     * 小顶堆
+     * 时间复杂度:O(N*lgK)
+     */
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
@@ -31,4 +35,46 @@ public class X_215_数组中的第K个最大元素 {
 
         return minHeap.peek();
     }
+
+    /**
+     * 利用快速排序的partition解决
+     * 时间复杂度:O(N)
+     * N+N/2+N/4+N/8+... = O(n)
+     */
+    public int findKthLargest1(int[] nums, int k) {
+        int left = 0;
+        int right = nums.length-1;
+        while (left < right) {
+            int pivot = partition(nums, left, right);
+            if (pivot == k-1) {
+                return nums[pivot];
+            }
+            if (pivot < k) {
+                left = pivot + 1;
+            } else {
+                right = pivot - 1;
+            }
+        }
+
+        return nums[k-1];
+    }
+
+    private int partition(int[] nums, int left, int right) {
+        int target = nums[left];
+
+        while (left < right) {
+            if (left < right && nums[right] <= target) {
+                right--;
+            }
+            nums[left] = nums[right];
+            if (left < right && nums[left] >= target) {
+                left++;
+            }
+            nums[right] = nums[left];
+        }
+
+        nums[left] = target;
+        return left;
+    }
+
 }
