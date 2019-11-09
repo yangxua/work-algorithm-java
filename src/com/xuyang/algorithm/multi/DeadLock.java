@@ -1,8 +1,5 @@
 package com.xuyang.algorithm.multi;
 
-import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CyclicBarrier;
-
 /**
  * @Auther: allanyang
  * @Date: 2019/9/10 10:48
@@ -12,19 +9,19 @@ public class DeadLock {
 
     private static final Object lock1 = new Object();
     private static final Object lock2 = new Object();
-    private static final CyclicBarrier barrier = new CyclicBarrier(2);
+   // private static final CyclicBarrier barrier = new CyclicBarrier(2);
 
     public static void main(String[] args) {
         Runnable job1 = new Runnable() {
             @Override
             public void run() {
-                try {
+               /* try {
                     barrier.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 synchronized (lock1) {
                     try {
@@ -43,13 +40,13 @@ public class DeadLock {
         Runnable job2 = new Runnable() {
             @Override
             public void run() {
-                try {
+               /* try {
                     barrier.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
-                }
+                }*/
 
                 synchronized (lock2) {
                     System.out.println("job2--lock2");

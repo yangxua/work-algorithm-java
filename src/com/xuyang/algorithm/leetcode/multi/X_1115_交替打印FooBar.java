@@ -39,6 +39,29 @@ import java.util.concurrent.Semaphore;
  */
 public class X_1115_交替打印FooBar {
 
+
+    public static void main(String[] args) throws InterruptedException {
+        FooBar fb = new FooBar(1);
+
+        Runnable job1 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("foo");
+            }
+        };
+
+        Runnable job2 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("bar");
+            }
+        };
+
+        fb.bar(job2);
+        fb.foo(job1);
+    }
+
+
 }
 
 class FooBar {
