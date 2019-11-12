@@ -1,7 +1,6 @@
 package com.xuyang.algorithm.leetcode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,7 +42,8 @@ public class X_39_组合总数 {
             return new ArrayList<>();
         }
 
-        Arrays.sort(candidates);
+        //Arrays.sort(candidates);
+
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
 

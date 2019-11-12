@@ -35,7 +35,7 @@ import java.util.List;
  * ]
  *
  */
-public class X_40_组合总和Ⅱ {
+public class X_40_组合总和Ⅱ{
 
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         if (candidates.length <= 0) {
@@ -60,12 +60,12 @@ public class X_40_组合总和Ⅱ {
             return ;
         }
 
-        for (int i = 0;i < candidates.length; i++) {
-            if (i > 0 && candidates[i] == candidates[i-1]) {
+        for (int i = level;i < candidates.length; i++) {
+            if (i > level && candidates[i] == candidates[i-1]) {
                 continue;
             }
             list.add(candidates[i]);
-            process(res, list, candidates, target-candidates[i], level+1);
+            process(res, list, candidates, target-candidates[i], i+1);
             list.remove(list.size()-1);
         }
     }

@@ -39,4 +39,21 @@ public class X_198_打家劫舍 {
 
         return Math.max(curMax, preMax);
     }
+
+
+    /**
+     * 更简洁的写法
+     */
+    public int rob1(int[] nums) {
+        int pre1 = 0;
+        int pre2 = 0;
+
+        for (int i = 0;i < nums.length;i++) {
+            int cur = Math.max(pre2 + nums[i], pre1);
+            pre2 = pre1;
+            pre1 = cur;
+        }
+
+        return pre1;
+    }
 }
