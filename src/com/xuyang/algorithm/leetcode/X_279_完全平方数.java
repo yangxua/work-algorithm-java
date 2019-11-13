@@ -65,15 +65,34 @@ public class X_279_完全平方数 {
     private List<Integer> generateSquares(int n) {
         List<Integer> res = new ArrayList<>();
 
-        for (int i = 0;i * i <= n;i++) {
+        for (int i = 1;i * i <= n;i++) {
             res.add(i * i);
         }
 
         return res;
     }
 
+
+    /**
+     * 动态规划
+     */
+    public int numSquares1(int n) {
+        int[] dp = new int[n+1];
+
+        for (int i = 1;i <= n;i++) {
+            //最差的情况下每次都用1来当平方数
+            dp[i] = i;
+            for (int j = 1;j * j <= i;j++) {
+                //dp[i-j*j]+1的含义是当i=7,j=2时，dp[i-j*j]=dp[3]的最小数加上1，这个1代表的相差的4可以用2*2来标识
+                dp[i] = Math.min(dp[i-j*j] + 1, dp[i]);
+            }
+        }
+
+        return dp[n];
+    }
+
     public static void main(String[] args) {
         X_279_完全平方数 s = new X_279_完全平方数();
-        System.out.println(s.numSquares(12));
+        System.out.println(s.numSquares1(12));
     }
 }

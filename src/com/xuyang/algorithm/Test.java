@@ -1,5 +1,8 @@
 package com.xuyang.algorithm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Auther: allanyang
  * @Date: 2019/11/6 18:05
@@ -9,22 +12,36 @@ package com.xuyang.algorithm;
  */
 public class Test {
 
-    public int uniquePaths(int m, int n) {
-        int[] dp = new int[n];
+    public int lengthOfLIS(int[] nums) {
+        if (nums.length <= 1) {
+            return nums.length;
+        }
 
-        for (int i = 0;i < n;i++) {
+        int res = 0;
+        int[] dp = new int[nums.length];
+
+        for (int i = 0;i < nums.length;i++) {
             dp[i] = 1;
-        }
-
-        for (int i = 1;i < m;i++) {
-            for (int j = 1;j < n;j++) {
-                dp[j] += dp[j-1];
+            for (int j = 0;j < i;j++) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
             }
+            res = Math.max(res, dp[i]);
         }
 
-        return dp[n];
+        return res;
     }
 
+    private List<Integer> generateSquares(int n) {
+        List<Integer> res = new ArrayList<>();
+
+        for (int i = 1;i <= n;i++) {
+            res.add(i * i);
+        }
+
+        return res;
+    }
 
 
     public void swap(int[] arr, int i, int j) {

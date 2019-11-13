@@ -3,7 +3,7 @@ package com.xuyang.algorithm.leetcode;
 /**
  * @Auther: allanyang
  * @Date: 2019/9/5 15:27
- * @Description:
+ * @Description: (300,646,376, 583,718)
  *
  * 给定一个无序的整数数组，找到其中最长上升子序列的长度。
  *
@@ -20,6 +20,8 @@ package com.xuyang.algorithm.leetcode;
 public class X_300_最长上升子序列 {
 
     /**
+     * dp[i]:已i为最后子序列的最长长度
+     *
      * 经典的动态规划
      * 注：想学习动态规范是如何来的，请看leetcode：70，509
      */
