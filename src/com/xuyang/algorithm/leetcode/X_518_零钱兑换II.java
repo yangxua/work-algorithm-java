@@ -47,4 +47,18 @@ public class X_518_零钱兑换II {
 
         return dp[amount];
     }
+
+    public int change1(int amount, int[] coins) {
+        int[] dp = new int[amount+1];
+        dp[0] = 1;
+
+        for (int i = 1;i <= coins.length;i++) {
+            int coin = coins[i-1];
+            for (int j = coin;j <= amount;j++) {
+                dp[j] += dp[j-coin]+1;
+            }
+        }
+
+        return dp[amount];
+    }
 }

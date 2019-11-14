@@ -1,7 +1,6 @@
 package com.xuyang.algorithm;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.xuyang.algorithm.dp.Packet;
 
 /**
  * @Auther: allanyang
@@ -12,35 +11,27 @@ import java.util.List;
  */
 public class Test {
 
-    public int lengthOfLIS(int[] nums) {
-        if (nums.length <= 1) {
-            return nums.length;
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0) {
+            return 0;
         }
 
-        int res = 0;
-        int[] dp = new int[nums.length];
+        int[] dp = new int[amount+1];
 
-        for (int i = 0;i < nums.length;i++) {
-            dp[i] = 1;
-            for (int j = 0;j < i;j++) {
-                if (nums[i] > nums[j]) {
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+        for (int i = 1;i <= coins.length;i++) {
+            int coin = coins[i-1];
+            for (int j = coin;j <= amount;j++) {
+                if (coin == j) {
+                    dp[j] = 1;
+                } else if (dp[j] == 0 && dp[j-coin] != 0) {
+                    dp[j] = dp[j-coin] + 1;
+                } else if (dp[j-coin] != 0){
+                    dp[j] = Math.max(dp[j], dp[j-coin]);
                 }
             }
-            res = Math.max(res, dp[i]);
         }
 
-        return res;
-    }
-
-    private List<Integer> generateSquares(int n) {
-        List<Integer> res = new ArrayList<>();
-
-        for (int i = 1;i <= n;i++) {
-            res.add(i * i);
-        }
-
-        return res;
+        return dp[amount] == 0 ? -1 : dp[amount];
     }
 
 
@@ -48,5 +39,10 @@ public class Test {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+
+    public static void main(String[] args) {
+        Packet s = new Packet();
+        s.packet01_1(4,new int[]{1,2,5},new int[]{1,2,5});
     }
 }
