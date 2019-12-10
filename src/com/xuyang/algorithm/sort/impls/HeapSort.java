@@ -10,7 +10,7 @@ import com.xuyang.algorithm.sort.AbstractSort;
 public class HeapSort<T extends Comparable<T>> extends AbstractSort<T> {
 
     /**
-     * 堆排序：首先从一般开始下沉，然后把大顶堆和数组最后元素交换。然后再次建堆
+     * 堆排序：首先从一半开始下沉，然后把大顶堆和数组最后元素交换。然后再次建堆
      * 稳定性: 不稳定
      * 时间复杂度：O（N*lgN）
      * 空间复杂度：O（1）
@@ -50,14 +50,14 @@ public class HeapSort<T extends Comparable<T>> extends AbstractSort<T> {
         }
 
         while (1 < n) {
-            swap(nums, 0, n--);
-            sink(nums, 0, n);
+            swap(nums, 1, n--);
+            sink(nums, 1, n);
         }
     }
 
     private void sink(T[] nums, int k, int n) {
         while (2 * k <= n) {
-            int j = 2 * n;
+            int j = 2 * k;
             if (j < n && less(nums, j, j+1)) {
                 j++;
             }
