@@ -1,6 +1,9 @@
 package com.xuyang.algorithm;
 
+import com.xuyang.algorithm.common.TreeNode;
 import com.xuyang.algorithm.dp.Packet;
+
+import java.util.Stack;
 
 /**
  * @Auther: allanyang
@@ -10,6 +13,78 @@ import com.xuyang.algorithm.dp.Packet;
  * 或已经cr的想再次练习，可以用这个文件
  */
 public class Test {
+
+    public void preOrder1(TreeNode root) {
+        if (root == null) {
+            return ;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            root = stack.pop();
+
+            System.out.println(root.val);
+            if (root.right != null) {
+                stack.push(root.right);
+            }
+            if (root.left != null) {
+                stack.push(root.left);
+            }
+        }
+    }
+
+    public void inOrder1(TreeNode root) {
+        if (root == null) {
+            return ;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || root != null) {
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
+            } else {
+                root = stack.pop();
+
+                System.out.println(root);
+                root = root.right;
+            }
+        }
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        return process(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean process(TreeNode root, int minValue, int maxValue) {
+        if (root == null) {
+            return true;
+        }
+
+        if (root.val <= minValue) {
+            return false;
+        }
+        if (root.val >= maxValue) {
+            return false;
+        }
+
+        return process(root.left, minValue, root.val) && process(root.right, root.val, maxValue);
+    }
+
+
+    private boolean isValid(int i, String haystack, String needle) {
+        int index = 0;
+        while (index < needle.length() && haystack.charAt(i) == needle.charAt(index)) {
+            i++;
+            index++;
+        }
+        return index == needle.length();
+    }
 
     public int coinChange(int[] coins, int amount) {
         if (amount == 0) {

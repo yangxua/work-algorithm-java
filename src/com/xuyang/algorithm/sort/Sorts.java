@@ -9,7 +9,7 @@ public class Sorts {
 
     public static void main(String[] args) {
         int[] arr = new int[]{2,0,2,1,1,0};
-        quickSort(arr);
+        kuaisu(arr);
         for (int i = 0;i < arr.length;i++) {
             System.out.println(arr[i]);
         }
@@ -205,5 +205,93 @@ public class Sorts {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+
+    public static void maopao(int[] arr) {
+        if (null == arr || arr.length == 0) {
+            return ;
+        }
+
+        for (int i = arr.length-1;i >= 0;i--) {
+            for (int j = 0;j < i;j++) {
+                if (arr[j] > arr[j+1]) {
+                    swap(arr, j, j+1);
+                }
+            }
+        }
+    }
+
+    public static void xuanze(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return ;
+        }
+
+        int index = 0;
+        for (int i = arr.length-1;i >= 0;i--) {
+            index = i;
+            for (int j = 0;j <= i;j++) {
+                if (arr[j] > arr[index]) {
+                    index = j;
+                }
+            }
+            if (i != index) {
+                swap(arr, index, i);
+            }
+        }
+    }
+
+    public static void charu(int[] arr) {
+        if (null == arr || arr.length == 0) {
+            return ;
+        }
+
+        for (int i = 1;i < arr.length;i++) {
+            int j = i;
+            int target = arr[j];
+
+            while (j > 0 && arr[j-1] > target) {
+                arr[j] = arr[j-1];
+                j--;
+            }
+
+            arr[j] = target;
+        }
+    }
+
+    public static void kuaisu(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return ;
+        }
+
+        kuaisu(arr, 0, arr.length-1);
+    }
+
+    private static void kuaisu(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        int pivot = partition1(arr, left, right);
+        kuaisu(arr, left, pivot-1);
+        kuaisu(arr, pivot+1, right);
+
+    }
+
+    private static int partition1(int[] arr, int left, int right) {
+        int target = arr[left];
+
+        while (left < right) {
+            while (left < right && arr[right] >= target) {
+                right--;
+            }
+            arr[left] = arr[right];
+            while (left < right && arr[left] <= target) {
+                left++;
+            }
+            arr[right] = arr[left];
+        }
+
+        arr[left] = target;
+        return left;
     }
 }

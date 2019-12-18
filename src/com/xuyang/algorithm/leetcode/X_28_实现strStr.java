@@ -18,6 +18,9 @@ package com.xuyang.algorithm.leetcode;
  */
 public class X_28_实现strStr {
 
+    /**
+     * 以下未暴力算法，最佳的算法应是KMP算法，不打算给出，感兴趣可以自行查阅
+     */
     public int strStr(String haystack, String needle) {
         if (needle.length() == 0) {
             return 0;

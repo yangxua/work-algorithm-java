@@ -49,4 +49,14 @@ public class X_56_合并区间 {
         return res.toArray(new int[res.size()][2]);
     }
 
+    public static void main(String[] args) {
+        X_56_合并区间 s = new X_56_合并区间();
+        s.merge(new int[][]{
+                {1,7},
+                {2,6},
+                {8,10},
+                {15,18}
+        });
+    }
+
 }
