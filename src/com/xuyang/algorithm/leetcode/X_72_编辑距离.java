@@ -73,4 +73,7 @@ public class X_72_编辑距离 {
 
         return dp[word1.length()][word2.length()];
     }
+    //abc -> abcd
+    //ab -> abcd + insert c
+    //abc -> abcd + delete c
 }

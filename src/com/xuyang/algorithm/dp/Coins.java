@@ -10,6 +10,7 @@ public class Coins {
     /**
      * 可以重复使用
      * 获取方法数
+     *
      * leetcode 518
      */
     public int getCount(int[] arr, int aim) {
@@ -70,5 +71,8 @@ public class Coins {
 
         return dp[count-1][aim] == max ? -1 : dp[count-1][aim];
     }
+
+
+
 
 }

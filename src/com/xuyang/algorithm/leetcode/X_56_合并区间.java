@@ -29,6 +29,7 @@ public class X_56_合并区间 {
             return new int[0][0];
         }
 
+
         List<int[]> res = new ArrayList<>();
         Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
         int start = intervals[0][0];

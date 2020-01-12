@@ -55,7 +55,7 @@ public class X_518_零钱兑换II {
         for (int i = 1;i <= coins.length;i++) {
             int coin = coins[i-1];
             for (int j = coin;j <= amount;j++) {
-                dp[j] += dp[j-coin]+1;
+                dp[j] += dp[j-coin];
             }
         }
 

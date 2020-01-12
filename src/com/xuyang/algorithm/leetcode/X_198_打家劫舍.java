@@ -56,4 +56,9 @@ public class X_198_打家劫舍 {
 
         return pre1;
     }
+
+    public static void main(String[] args) {
+        X_198_打家劫舍 s = new X_198_打家劫舍();
+        s.rob1(new int[]{2,1,1,2});
+    }
 }

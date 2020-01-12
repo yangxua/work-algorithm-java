@@ -59,7 +59,7 @@ public class X_215_数组中的第K个最大元素 {
         return nums[k-1];
     }
 
-    private int partition(int[] nums, int left, int right) {
+    private static int partition(int[] nums, int left, int right) {
         int target = nums[left];
 
         while (left < right) {
@@ -76,5 +76,6 @@ public class X_215_数组中的第K个最大元素 {
         nums[left] = target;
         return left;
     }
+
 
 }

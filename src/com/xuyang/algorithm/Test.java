@@ -1,8 +1,9 @@
 package com.xuyang.algorithm;
 
 import com.xuyang.algorithm.common.TreeNode;
-import com.xuyang.algorithm.dp.Packet;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -14,9 +15,105 @@ import java.util.Stack;
  */
 public class Test {
 
+    public static void main(String[] args) {
+        System.out.println(reverse1("www.toutiao.p/hello/index.com"));
+    }
+
+    public static String reverse1(String s) {
+        char[] chars = s.toCharArray();
+        reverseString(chars);
+        s = new String(chars);
+        String[] split = s.split("\\.");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0;i < split.length;i++) {
+            char[] chars1 = split[i].toCharArray();
+            reverseString(chars1);
+            sb.append(new String(chars1)).append(".");
+        }
+        return sb.toString().substring(0,sb.length()-1);
+    }
+
+    /**
+     * 迭代
+     */
+    public static void reverseString(char[] s) {
+        if (s.length <= 1) {
+            return ;
+        }
+
+        for (int i = 0;i <= (s.length-1)/2;i++) {
+            swap(s, i, s.length-1-i);
+        }
+    }
+
+    private static void swap(char[] arr, int i, int j) {
+        char tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
+    public static int canCompleteCircuit(int[] gas, int[] cost) {
+        int rest = 0, run = 0, start = 0;
+        for (int i = 0; i < gas.length; ++i) {
+            run += (gas[i] - cost[i]);
+            rest += (gas[i] - cost[i]);
+            if (run < 0) {
+                start = i + 1;
+                run = 0;
+            }
+        }
+        return rest < 0 ? -1 : start;
+
+    }
+
+    public static int[] productExceptSelf(int[] nums) {
+        int[] res = new int[nums.length];
+        int k = 1;
+        for (int i = 0; i < nums.length; i++) {
+            res[i] = k;
+            k *= nums[i];
+        }
+        k = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            res[i] *= k;
+            k *= nums[i];
+        }
+
+        return res;
+    }
+
+
+    public List<String> generateParenthesis(int n) {
+        if (n == 0) {
+            return new ArrayList<>();
+        }
+
+        return process(new ArrayList<>(), n, n, "");
+    }
+
+    private List<String> process(List<String> res, int left, int right, String s) {
+        if (left == 0 && right == 0) {
+            res.add(s);
+            return res;
+        }
+
+        if (left > right || left < 0 || right < 0) {
+            return res;
+        }
+
+        s += '(';
+        process(res, left - 1, right, s);
+        s = s.substring(0, s.length() - 1);
+
+        s += ')';
+        process(res, left, right - 1, s);
+
+        return res;
+    }
+
     public void preOrder1(TreeNode root) {
         if (root == null) {
-            return ;
+            return;
         }
 
         Stack<TreeNode> stack = new Stack<>();
@@ -36,7 +133,7 @@ public class Test {
 
     public void inOrder1(TreeNode root) {
         if (root == null) {
-            return ;
+            return;
         }
 
         Stack<TreeNode> stack = new Stack<>();
@@ -91,17 +188,17 @@ public class Test {
             return 0;
         }
 
-        int[] dp = new int[amount+1];
+        int[] dp = new int[amount + 1];
 
-        for (int i = 1;i <= coins.length;i++) {
-            int coin = coins[i-1];
-            for (int j = coin;j <= amount;j++) {
+        for (int i = 1; i <= coins.length; i++) {
+            int coin = coins[i - 1];
+            for (int j = coin; j <= amount; j++) {
                 if (coin == j) {
                     dp[j] = 1;
-                } else if (dp[j] == 0 && dp[j-coin] != 0) {
-                    dp[j] = dp[j-coin] + 1;
-                } else if (dp[j-coin] != 0){
-                    dp[j] = Math.max(dp[j], dp[j-coin]);
+                } else if (dp[j] == 0 && dp[j - coin] != 0) {
+                    dp[j] = dp[j - coin] + 1;
+                } else if (dp[j - coin] != 0) {
+                    dp[j] = Math.max(dp[j], dp[j - coin]);
                 }
             }
         }
@@ -116,8 +213,4 @@ public class Test {
         arr[j] = tmp;
     }
 
-    public static void main(String[] args) {
-        Packet s = new Packet();
-        s.packet01_1(4,new int[]{1,2,5},new int[]{1,2,5});
-    }
 }
