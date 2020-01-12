@@ -7,6 +7,19 @@ package com.xuyang.algorithm.sort;
  */
 public class Sorts {
 
+    /**
+     * 算法        时间复杂度      空间复杂度       稳定性
+     * 冒泡排序     O（n^2）          O(1)           yes
+     * 选择排序     O（n^2）          O(1)           no
+     * 插入排序     O（n^2）          O(1)           yes
+     * 归并排序     O（nlgn）         O(n)           yes
+     * 快速排序     O（nlgn）         O(lgn~n)       no
+     * 堆排序       O（nlgn）         O(1)           no
+     * 希尔排序     O（nlgn）         O(1)           no
+     * 计数排序     O（n）            O(m)           yes
+     * 基数排序     O（n）            O(m)           yes
+     */
+
     public static void main(String[] args) {
         int[] arr = new int[]{2,0,2,1,1,0};
         kuaisu(arr);
