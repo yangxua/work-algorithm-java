@@ -83,4 +83,9 @@ public class X_17_电话号码的字母组合 {
         return res;
     }
 
+    public static void main(String[] args) {
+        X_17_电话号码的字母组合 s = new X_17_电话号码的字母组合();
+        s.letterCombinations1("23");
+    }
+
 }

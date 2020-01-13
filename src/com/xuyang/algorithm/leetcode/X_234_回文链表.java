@@ -27,9 +27,10 @@ public class X_234_回文链表 {
             return true;
         }
 
-        //此处会先走一步,因此如果是偶数的话1-2-3-4-null,此时fast=null, slow等于3,如果是奇数的话,fast仍然为null位置(只不过值为5),slow等于3
-        //如果没有先走这一步,则slow会落在2的位置,fast=4,而奇数的时候,slow等于3,fast为5的位置
-        //因此如果是奇数的话,都为中间,而偶数的话,先走fast会在null,slow会在右中位数,而没先走fast会在最后节点,slow会在左中位数
+        // 此处会先走一步,因此如果是偶数的话1-2-3-4-null,此时fast=null, slow等于3,如果是奇数的话,fast仍然为null位置(只不过值为5),slow等于3
+        // 如果没有先走这一步,则slow会落在2的位置,fast=4,而奇数的时候,slow等于3,fast为5的位置
+        // 因此如果是奇数的话,都为中间,而偶数的话,先走fast会在null,slow会在右中位数,而没先走fast会在最后节点,slow会在左中位数
+        // @todo 上面说的好像有问题
         ListNode fast = head.next.next;
         ListNode slow = head.next;
         while (fast != null && fast.next != null) {
